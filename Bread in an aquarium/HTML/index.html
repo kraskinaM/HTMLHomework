@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аквариум с хлебом</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #7ff0ff;
+            font-family: 'Comic Sans MS', 'Papyrus', fantasy; 
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="lime" stroke="red" stroke-width="4"/><text x="8" y="26" font-size="24" fill="blue">👆</text></svg>'), auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: repeating-linear-gradient(45deg, rgba(255,0,0,0.3) 0px, rgba(255,0,0,0.3) 10px, rgba(0,255,0,0.3) 10px, rgba(0,255,0,0.3) 20px);
+            background-size: 40px 40px;
+        }
+        .akvarium-s-hlebom {
+            width: 666px;            
+            max-width: 90vw;
+            height: 500px;
+            background: #8B4513;      
+            border: 35px ridge #FFD700; 
+            box-shadow: 15px 15px 0px 5px magenta, -10px -10px 0px 8px cyan; 
+            padding: 5px;
+            transform: rotate(0.5deg); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(1px) hue-rotate(90deg);
+        }
+        .verhnyaya-zalupa {
+            background: yellow;
+            color: #000;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 20px;
+            text-align: center;
+            width: 110%;
+            border: 12px dotted blue;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 3px red, -2px -2px 3px green;
+            transform: skewX(-5deg) scale(1.1);
+            word-break: break-all;
+            font-family: 'Times New Roman', serif; 
+        }
+        .nigniy-zalupnik {
+            background: #ff00ff;
+            color: aqua;
+            font-size: 28px;
+            padding: 8px 80px 8px 8px;
+            border-left: 30px solid black;
+            border-right: 10px dotted white;
+            border-top: 5px dashed navy;
+            border-bottom: 15px double red;
+            margin-top: 30px;
+            width: 80%;
+            text-align: right;
+            rotate: -1deg;
+        }
+        .riba-i-hleb {
+            background: #00ffff7c;
+            width: 380px;
+            height: 280px;
+            border: 20px groove #111;
+            border-radius: 30px 30px 10px 10px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: inset 0 0 30px 5px hotpink; 
+            background-image: radial-gradient(circle at 30% 30%, #ffffff80 20px, #00b09b 100%);
+            position: relative;
+            background-image: repeating-linear-gradient( transparent 0px, transparent 15px, rgba(255,255,255,0.3) 15px, rgba(255,255,255,0.3) 20px);
+        }
+        .kusk-hleba {
+            font-size: 110px; 
+            line-height: 1;
+            filter: drop-shadow(0 0 10px #000) blur(0.5px); 
+            transform: rotate(5deg) scaleX(0.8); 
+            margin-left: 20px;
+            margin-top: -20px;
+            background: rgba(255, 255, 0, 0.2);
+            border-radius: 50% 20% / 40% 60%; 
+            padding: 0 10px;
+            border: 2px solid orange;
+        }
+        .puzyri {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .puzyr {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            bottom: 10px;
+            left: 20%;
+            animation: vverh 5s infinite ease-in;
+        }
+        .puzyr2 {
+            left: 60%;
+            bottom: 0;
+            width: 40px;
+            height: 40px;
+            animation-duration: 7s;
+            background: rgba(200, 255, 200, 0.6);
+        }
+        .puzyr3 {
+            left: 80%;
+            bottom: 5px;
+            width: 15px;
+            height: 15px;
+            animation-duration: 3s;
+            background: lightblue;
+        }
+        @keyframes vverh {
+            0% { bottom: 5%; opacity: 1; }
+            100% { bottom: 90%; opacity: 0; }
+        }
+        .dich-riba {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.5;
+            transform: scaleX(-1);
+            animation: plav 3s infinite alternate;
+        }
+        @keyframes plav {
+            from { transform: scaleX(-1) translateX(10px); }
+            to { transform: scaleX(-1) translateX(40px); }
+        }
+        .dich2 {
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            font-size: 30px;
+            animation: plav2 4s infinite alternate-reverse;
+        }
+        @keyframes plav2 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(30deg); }
+        }
+        .musor {
+            display: flex;
+            gap: 30px;
+            background: rgba(255,0,0,0.2);
+            width: 100%;
+            justify-content: space-around;
+        }
+        .musor-item {
+            font-size: 40px;
+            background: white;
+            border: 10px solid purple;
+            border-radius: 2px;
+            padding: 0 20px;
+            transform: rotate(10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="akvarium-s-hlebom">
+        <div class="verhnyaya-zalupa">
+            🦐🐟🐠🐡🦞 ВОДНЫЙ МИР 🐙🦑🦀🐬🐳
+        </div>
+        <div class="riba-i-hleb" id="akva">
+            <div class="kusk-hleba" title="Хлеб внутри аквариума (ржаной, наверное)">
+                🍞
+            </div>
+            <div class="puzyri">
+                <div class="puzyr"></div>
+                <div class="puzyr puzyr2"></div>
+                <div class="puzyr puzyr3"></div>
+            </div>
+            <div class="dich-riba">
+                🎣🐡
+            </div>
+            <div class="dich2">
+                🧀
+            </div>
+        </div>
+        <div class="nigniy-zalupnik">
+            хлеб аквариумный
+        </div>
+        <div class="musor">
+            <span class="musor-item">🚽</span>
+            <span class="musor-item">🧻</span>
+            <span class="musor-item">💩</span>
+        </div>
+        <div style="visibility: hidden; display: none;">ты думал тут что-то есть? а вот нихуя</div>
+        <marquee style="border: 10px solid white; background: black; color: yellow; width: 100%;" scrollamount="20" loop="infinite" truespeed="true" vspace="20">⚡⚡⚡ ХЛЕБ ПЛАВАЕТ В АКВАРИУМЕ СРОЧНО ЗАЛИПНИ СЮДА ⚡⚡⚡ САЙТ ШАКАЛА ПРИВЕТСТВУЕТ ТЕБЯ, ЧЕЛОВЕК-КОТОРЫЙ-ЭТО-ЗАКАЗАЛ</marquee>
+    </div>
+    <div style="position: fixed; bottom: 0; left: 0; background: #000; color: #0f0; font-size: 8px; z-index: 9999; width: 100%; text-align: center; opacity: 0.6;">
+        ХЛЕБ В АКВАРИУМЕ
+    </div>
+    <div style="position: absolute; top: 0; right: 0; background: red; color: white; padding: 10px; rotate: 10deg; font-size: 8px;">НЕТ СМЫСЛА</div>
+</body>
+</html>
