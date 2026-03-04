@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лазурный горизонт</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto123, sans-serif;
+      background: #ecf9ff;  
+      color: #024257;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .page-header {
+      background: #ffffffcc;    
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(70, 150, 180, 0.1);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #b3dbe9;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #016885;
+    }
+    .logo span {
+      font-weight: 500;
+      color: #024e66;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #015268;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+      font-size: 1.1rem;
+    }
+    .nav-menu a:hover {
+      border-bottom-color: #0288b1;
+    }
+    .hero {
+      padding: 70px 0 60px;
+      background: rgba(255, 255, 255, 0.5);
+      margin-bottom: 20px;
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 350;
+      color: #01607c;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: #02526b;
+      background: #ffffffb3;
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      border-radius: 40px;
+      margin-bottom: 40px;
+    }
+    .btn {
+      display: inline-block;
+      background: #8ac7e6;
+      color: #023b4b;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 12px 38px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px #65aecf;
+      transition: all 0.2s;
+      border: 1px solid white;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #6bb6db;
+      color: #001f2b;
+      box-shadow: 0 8px 18px #3e8fb3;
+    }
+    .cards-section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 330;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #014b63;
+      border-bottom: 1px solid #9fcde0;
+      padding-bottom: 12px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 28px 12px 28px 12px;
+      box-shadow: 0 10px 22px #b7d9e9;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #def0f9;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 28px #79bedb;
+    }
+    .card h3 {
+      font-size: 1.9rem;
+      font-weight: 380;
+      color: #016f8f;
+      margin-bottom: 12px;
+    }
+    .card p {
+      color: #024d62;
+      font-size: 1.1rem;
+    }
+    .media-section {
+      padding: 60px 0;
+      background: #d1ebf9;
+      border-radius: 60px 0 60px 0;
+      margin: 20px 0;
+    }
+    .media-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    .media-video {
+      flex: 2 1 420px;
+    }
+    .media-caption {
+      flex: 1 1 240px;
+      background: #ffffffde;
+      padding: 24px 20px;
+      border-radius: 40px 8px 40px 8px;
+      box-shadow: 0 8px 16px #9dc5d9;
+    }
+    .media-caption h3 {
+      font-size: 1.9rem;
+      color: #015772;
+      margin-bottom: 10px;
+    }
+    .media-caption p {
+      font-size: 1.1rem;
+      color: #02495f;
+    }
+    .custom-video {
+      width: 100%;
+      border-radius: 28px 6px 28px 6px;
+      box-shadow: 0 14px 22px #0284ab73;
+      border: 2px solid white;
+      background: #c4e2f0;
+    }
+    .contact-section {
+      padding: 60px 0 40px;
+    }
+    .contact-card {
+      background: #c3e2f2e0;
+      backdrop-filter: blur(2px);
+      border-radius: 60px 12px 60px 12px;
+      padding: 45px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      box-shadow: 0 12px 24px #78bbd6;
+      border: 1px solid white;
+    }
+    .contact-text {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #014257;
+    }
+    .contact-text strong {
+      font-weight: 600;
+      color: #003341;
+    }
+    .contact-actions {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      font-size: 1.6rem;
+      text-decoration: none;
+      background: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      color: #01556b;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 10px #4196b5;
+      transition: 0.2s;
+      border: 1px solid #c2e1f0;
+    }
+    .contact-link span {
+      font-size: 1.2rem;
+    }
+    .contact-link:hover {
+      background: #e9f5fd;
+      box-shadow: 0 8px 16px #1e7797;
+    }
+    .emoji-icon {
+      font-size: 2rem;
+      transition: transform 0.15s;
+    }
+
+    .contact-link:hover .emoji-icon {
+      transform: scale(1.1);
+    }
+    .page-footer {
+      background: #cde4f0;
+      padding: 28px 0;
+      margin-top: 50px;
+      border-top: 2px solid white;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+    .copyright {
+      font-size: 1.1rem;
+      color: #024257;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      color: #02455b;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+    }
+    .footer-links a:hover {
+      border-bottom-color: #015f82;
+    }
+    @media (max-width: 700px) {
+      .header-container {
+        flex-direction: column;
+      }
+      .nav-menu {
+        gap: 1.2rem;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .contact-card {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+      .contact-actions {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <div class="container header-container">
+      <div class="logo"></span> Бебебе что-то написано <span>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#about">О проекте</a></li>
+          <li><a href="#cards">Возможности</a></li>
+          <li><a href="#media">Медиа</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="about">
+      <div class="container hero-content">
+        <h1>Лазурный горизонт</h1>
+        <p>Промо‑страница</p>
+        <a href="#media" class="btn">Узнать больше</a>
+      </div>
+    </section>
+    <section class="cards-section" id="cards">
+      <div class="container">
+        <h2 class="section-title">Наши преимущества</h2>
+        <div class="cards-grid">
+          <article class="card">
+            <h3>Чистота</h3>
+            <p>Лазурные оттенки и воздух. Минимум декора, максимум смысла.</p>
+          </article>
+          <article class="card">
+            <h3>Гибкость</h3>
+            <p>Сетка на Grid + Flex — адаптивность без усилий.</p>
+          </article>
+          <article class="card">
+            <h3>Медийность</h3>
+            <p>Видео с собственными элементами управления.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="media-section" id="media">
+      <div class="container media-wrapper">
+        <div class="media-video">
+    <video class="custom-video" controls poster="Лысый.jpg">
+    <source src="Лысый.mp4" type="video/mp4">
+        </div>
+        <div class="media-caption">
+          <h3>видео</h3>
+          <p>Короткий ролик с настроением, и душой.</p>
+        </div>
+      </div>
+    </section>
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-text">
+             <strong>Свяжитесь</strong> с нами
+          </div>
+          <div class="contact-actions">
+            <a href="#" class="contact-link">
+              <span class="emoji-icon"></span>
+              <span>Почта</span>
+            </a>
+            <a href="#" class="contact-link">
+              <span class="emoji-icon"></span>
+              <span>Звонок</span>
+            </a>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-size: 1.4rem; color: #015770;">
+        </p>
+      </div>
+    </section>
+  </main>
+  <footer class="page-footer">
+    <div class="container footer-container">
+      <div class="copyright">
+        © 2026 Лазурный горизонт
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
