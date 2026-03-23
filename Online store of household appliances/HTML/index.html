@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Торговая платформа · TRADE.HUB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">TRADE<span>HUB</span></div>
+        <nav class="nav">
+            <a data-page="home" class="active">Главная</a>
+            <a data-page="catalog">Каталог</a>
+            <a data-page="cart">Корзина</a>
+        </nav>
+        <div class="cart-icon" data-page="cart">
+             <span id="cartCount">0</span>
+        </div>
+    </header>
+    <div class="page-container">
+        <div id="homePage" class="page active-page">
+            <section class="hero">
+                <h1>Профессиональное оборудование для бизнеса</h1>
+                <p>Только проверенные решения для работы и офиса. Корпоративные цены, быстрая доставка, гарантия качества.</p>
+                <button class="hero-btn" data-page="catalog">Перейти в каталог</button>
+            </section>
+            <div class="features-section">
+                <h2>Почему выбирают нас?</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Быстрая доставка</h3>
+                        <p>По всей России от 2 дней. Бесплатно от 50 000 ₽</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Гарантия качества</h3>
+                        <p>Все товары сертифицированы. Официальная гарантия</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Для бизнеса</h3>
+                        <p>Специальные условия для компаний и ИП</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Безопасная оплата</h3>
+                        <p>Защита транзакций. Работаем с юрлицами</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="catalogPage" class="page">
+            <h2>Каталог товаров</h2>
+            <div class="catalog-grid" id="catalogGrid"></div>
+        </div>
+        <div id="cartPage" class="page">
+            <h2>Корзина</h2>
+            <div id="cartContainer" class="cart-items"></div>
+            <div class="cart-summary">
+                <span>ИТОГО:</span>
+                <span class="total-price" id="cartTotal">0 ₽</span>
+                <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        © 2026 TradeHub — профессиональная торговая платформа
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
