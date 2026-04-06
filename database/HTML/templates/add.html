@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить наблюдение | Дневник небесных явлений</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Добавить новое наблюдение</h1>
+            <p>Запечатлейте красоту небесного явления</p>
+        </header>
+
+        <div class="form-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/add" class="observation-form">
+                <div class="form-group">
+                    <label for="location"> Место наблюдения *</label>
+                    <input type="text" id="location" name="location" 
+                           value="{{ form_data.get('location', '') }}"
+                           placeholder="Например: Москва, Воробьёвы горы"
+                           required>
+                    <small>Укажите место, где наблюдали небесное явление</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="sky_type">Тип явления *</label>
+                    <select id="sky_type" name="sky_type" required>
+                        <option value="">Выберите тип явления</option>
+                        <option value="sunset" {% if form_data.get('sky_type') == 'sunset' %}selected{% endif %}>
+                             Закат
+                        </option>
+                        <option value="sunrise" {% if form_data.get('sky_type') == 'sunrise' %}selected{% endif %}>
+                             Рассвет
+                        </option>
+                        <option value="twilight" {% if form_data.get('sky_type') == 'twilight' %}selected{% endif %}>
+                             Сумерки
+                        </option>
+                        <option value="aurora" {% if form_data.get('sky_type') == 'aurora' %}selected{% endif %}>
+                             Северное сияние
+                        </option>
+                        <option value="rainbow" {% if form_data.get('sky_type') == 'rainbow' %}selected{% endif %}>
+                             Радуга
+                        </option>
+                        <option value="clouds" {% if form_data.get('sky_type') == 'clouds' %}selected{% endif %}>
+                             Необычные облака
+                        </option>
+                        <option value="other" {% if form_data.get('sky_type') == 'other' %}selected{% endif %}>
+                             Другое
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observation_date"> Дата наблюдения *</label>
+                    <input type="date" id="observation_date" name="observation_date" 
+                           value="{{ form_data.get('observation_date', '') }}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="observer_name"> Ваше имя *</label>
+                    <input type="text" id="observer_name" name="observer_name" 
+                           value="{{ form_data.get('observer_name', '') }}"
+                           placeholder="Например: Иван Петров"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"> Описание</label>
+                    <textarea id="description" name="description" 
+                              rows="4"
+                              placeholder="Опишите свои впечатления, цвета неба, погодные условия...">{{ form_data.get('description', '') }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo_url">Ссылка на фото</label>
+                    <input type="url" id="photo_url" name="photo_url" 
+                           value="{{ form_data.get('photo_url', '') }}"
+                           placeholder="https://example.com/photo.jpg">
+                    <small>Вставьте ссылку на фото (если есть)</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Сохранить наблюдение</button>
+                    <a href="/" class="btn btn-secondary">↩️ Вернуться к списку</a>
+                </div>
+
+                <div class="form-note">
+                    <small>* — поля, обязательные для заполнения</small>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

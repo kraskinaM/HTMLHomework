@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник небесных явлений | Главная</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Дневник небесных явлений</h1>
+            <p>Клуб любителей прекрасных закатов и рассветов</p>
+        </header>
+        <div class="actions">
+            <a href="/add" class="btn btn-primary">Добавить наблюдение</a>
+        </div>
+        <div class="filter-section">
+            <h3>Фильтр по типу явления:</h3>
+            <div class="filter-buttons">
+                <a href="/" class="filter-btn {% if not current_filter %}active{% endif %}">Все</a>
+                <a href="/?type=sunset" class="filter-btn {% if current_filter == 'sunset' %}active{% endif %}"> Закат</a>
+                <a href="/?type=sunrise" class="filter-btn {% if current_filter == 'sunrise' %}active{% endif %}"> Рассвет</a>
+                <a href="/?type=twilight" class="filter-btn {% if current_filter == 'twilight' %}active{% endif %}"> Сумерки</a>
+                <a href="/?type=aurora" class="filter-btn {% if current_filter == 'aurora' %}active{% endif %}"> Северное сияние</a>
+                <a href="/?type=rainbow" class="filter-btn {% if current_filter == 'rainbow' %}active{% endif %}"> Радуга</a>
+                <a href="/?type=clouds" class="filter-btn {% if current_filter == 'clouds' %}active{% endif %}"> Необычные облака</a>
+                <a href="/?type=other" class="filter-btn {% if current_filter == 'other' %}active{% endif %}"> Другое</a>
+            </div>
+            {% if current_filter %}
+                <p class="filter-info">Показаны наблюдения типа: <strong>{{ sky_types_ru[current_filter] }}</strong></p>
+            {% endif %}
+        </div>
+        <div class="observations-list">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% if observations %}
+                <div class="observations-grid">
+                    {% for obs in observations %}
+                        <div class="observation-card">
+                            <div class="card-header">
+                                <h3>{{ obs.location }}</h3>
+                                <span class="sky-badge">{{ sky_types_ru[obs.sky_type] }}</span>
+                            </div>
+                            <div class="card-content">
+                                <p><strong>Дата:</strong> {{ obs.observation_date }}</p>
+                                <p><strong>Наблюдатель:</strong> {{ obs.observer_name }}</p>
+                                {% if obs.description %}
+                                    <p><strong>Описание:</strong> {{ obs.description }}</p>
+                                {% endif %}
+                                {% if obs.photo_url %}
+                                    <p><strong>Фото:</strong> <a href="{{ obs.photo_url }}" target="_blank">Посмотреть фото</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <small>Добавлено: {{ obs.created_at[:10] }}</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <span class="icon"></span>
+                    <p>Наблюдений пока нет</p>
+                    <p>Станьте первым, кто запечатлеет красоту неба!</p>
+                    <a href="/add" class="btn btn-primary"> Добавить наблюдение</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
