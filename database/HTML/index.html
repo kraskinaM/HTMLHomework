@@ -9,24 +9,24 @@
 <body>
     <div class="container">
         <header>
-            <h1>🌥️ Реестр наблюдений за аномальными облаками</h1>
+            <h1>Реестр наблюдений за аномальными облаками</h1>
             <p>Клуб любителей необычных облачных формаций</p>
         </header>
 
         <div class="actions">
-            <a href="/add" class="btn btn-primary">➕ Добавить наблюдение</a>
+            <a href="/add" class="btn btn-primary"> Добавить наблюдение</a>
         </div>
 
         <div class="filter-section">
             <h3>Фильтр по типу облака:</h3>
             <div class="filter-buttons">
                 <a href="/" class="filter-btn {% if not current_filter %}active{% endif %}">Все</a>
-                <a href="/?type=undulatus" class="filter-btn {% if current_filter == 'undulatus' %}active{% endif %}">🌊 Волнистые</a>
-                <a href="/?type=mammatus" class="filter-btn {% if current_filter == 'mammatus' %}active{% endif %}">☁️ Вымеобразные</a>
-                <a href="/?type=lenticularis" class="filter-btn {% if current_filter == 'lenticularis' %}active{% endif %}">💿 Линзовидные</a>
-                <a href="/?type=asperitas" class="filter-btn {% if current_filter == 'asperitas' %}active{% endif %}">🌫️ Шероховатые</a>
-                <a href="/?type=arcus" class="filter-btn {% if current_filter == 'arcus' %}active{% endif %}">🏹 Дуговые</a>
-                <a href="/?type=other" class="filter-btn {% if current_filter == 'other' %}active{% endif %}">❓ Другое</a>
+                <a href="/?type=undulatus" class="filter-btn {% if current_filter == 'undulatus' %}active{% endif %}">Волнистые</a>
+                <a href="/?type=mammatus" class="filter-btn {% if current_filter == 'mammatus' %}active{% endif %}">Вымеобразные</a>
+                <a href="/?type=lenticularis" class="filter-btn {% if current_filter == 'lenticularis' %}active{% endif %}">Линзовидные</a>
+                <a href="/?type=asperitas" class="filter-btn {% if current_filter == 'asperitas' %}active{% endif %}"> Шероховатые</a>
+                <a href="/?type=arcus" class="filter-btn {% if current_filter == 'arcus' %}active{% endif %}">Дуговые</a>
+                <a href="/?type=other" class="filter-btn {% if current_filter == 'other' %}active{% endif %}"> Другое</a>
             </div>
             {% if current_filter %}
                 <p class="filter-info">Показаны наблюдения типа: <strong>{{ cloud_types_ru[current_filter] }}</strong></p>
@@ -51,13 +51,13 @@
                                 <span class="cloud-badge">{{ cloud_types_ru[obs.cloud_type] }}</span>
                             </div>
                             <div class="card-content">
-                                <p><strong>📅 Дата:</strong> {{ obs.observation_date }}</p>
-                                <p><strong>👤 Наблюдатель:</strong> {{ obs.observer_name }}</p>
+                                <p><strong> Дата:</strong> {{ obs.observation_date }}</p>
+                                <p><strong> Наблюдатель:</strong> {{ obs.observer_name }}</p>
                                 {% if obs.description %}
-                                    <p><strong>📝 Описание:</strong> {{ obs.description }}</p>
+                                    <p><strong> Описание:</strong> {{ obs.description }}</p>
                                 {% endif %}
                                 {% if obs.photo_url %}
-                                    <p><strong>🖼️ Фото:</strong> <a href="{{ obs.photo_url }}" target="_blank">Посмотреть фото</a></p>
+                                    <p><strong>Фото:</strong> <a href="{{ obs.photo_url }}" target="_blank">Посмотреть фото</a></p>
                                 {% endif %}
                             </div>
                             <div class="card-footer">
@@ -68,9 +68,9 @@
                 </div>
             {% else %}
                 <div class="empty-state">
-                    <p>😕 Наблюдений пока нет</p>
+                    <p> Наблюдений пока нет</p>
                     <p>Станьте первым наблюдателем!</p>
-                    <a href="/add" class="btn btn-primary">➕ Добавить наблюдение</a>
+                    <a href="/add" class="btn btn-primary"> Добавить наблюдение</a>
                 </div>
             {% endif %}
         </div>
