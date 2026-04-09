@@ -34,7 +34,6 @@ def init_db():
         conn.commit()
         conn.close()
 
-# Инициализация БД при запуске
 init_db()
 
 @app.route('/')
@@ -56,7 +55,6 @@ def index():
     observations = cursor.fetchall()
     conn.close()
     
-    # Словарь для отображения типов небесных явлений на русском
     sky_types_ru = {
         'sunset': 'Закат',
         'sunrise': 'Рассвет',
@@ -76,7 +74,7 @@ def index():
 def add_observation():
     """Страница добавления нового наблюдения"""
     if request.method == 'POST':
-        # Получение данных из формы
+
         location = request.form.get('location', '').strip()
         sky_type = request.form.get('sky_type', '')
         observation_date = request.form.get('observation_date', '')
@@ -84,7 +82,6 @@ def add_observation():
         photo_url = request.form.get('photo_url', '').strip()
         observer_name = request.form.get('observer_name', '').strip()
         
-        # Валидация данных
         errors = []
         
         if not location:
@@ -110,8 +107,7 @@ def add_observation():
             for error in errors:
                 flash(error, 'error')
             return render_template('add.html', form_data=request.form)
-        
-        # Сохранение в базу данных
+    
         try:
             conn = get_db()
             cursor = conn.cursor()
