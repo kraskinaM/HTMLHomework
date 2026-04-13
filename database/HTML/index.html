@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Реестр аномальных облаков | Главная</title>
+    <title>Реестр аномальных облаков - Главная</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -12,11 +12,9 @@
             <h1>Реестр наблюдений за аномальными облаками</h1>
             <p>Клуб любителей необычных облачных формаций</p>
         </header>
-
         <div class="actions">
             <a href="/add" class="btn btn-primary"> Добавить наблюдение</a>
         </div>
-
         <div class="filter-section">
             <h3>Фильтр по типу облака:</h3>
             <div class="filter-buttons">
@@ -32,7 +30,6 @@
                 <p class="filter-info">Показаны наблюдения типа: <strong>{{ cloud_types_ru[current_filter] }}</strong></p>
             {% endif %}
         </div>
-
         <div class="observations-list">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -41,7 +38,6 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-
             {% if observations %}
                 <div class="observations-grid">
                     {% for obs in observations %}
