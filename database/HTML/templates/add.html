@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавить наблюдение | Дневник небесных явлений</title>
+    <title>Добавить наблюдение - Дневник небесных явлений</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -12,7 +12,6 @@
             <h1>Добавить новое наблюдение</h1>
             <p>Запечатлейте красоту небесного явления</p>
         </header>
-
         <div class="form-container">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -21,7 +20,6 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-
             <form method="POST" action="/add" class="observation-form">
                 <div class="form-group">
                     <label for="location"> Место наблюдения *</label>
@@ -31,7 +29,6 @@
                            required>
                     <small>Укажите место, где наблюдали небесное явление</small>
                 </div>
-
                 <div class="form-group">
                     <label for="sky_type">Тип явления *</label>
                     <select id="sky_type" name="sky_type" required>
@@ -59,14 +56,12 @@
                         </option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="observation_date"> Дата наблюдения *</label>
                     <input type="date" id="observation_date" name="observation_date" 
                            value="{{ form_data.get('observation_date', '') }}"
                            required>
                 </div>
-
                 <div class="form-group">
                     <label for="observer_name"> Ваше имя *</label>
                     <input type="text" id="observer_name" name="observer_name" 
@@ -74,14 +69,12 @@
                            placeholder="Например: Иван Петров"
                            required>
                 </div>
-
                 <div class="form-group">
                     <label for="description"> Описание</label>
                     <textarea id="description" name="description" 
                               rows="4"
                               placeholder="Опишите свои впечатления, цвета неба, погодные условия...">{{ form_data.get('description', '') }}</textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="photo_url">Ссылка на фото</label>
                     <input type="url" id="photo_url" name="photo_url" 
@@ -89,12 +82,10 @@
                            placeholder="https://example.com/photo.jpg">
                     <small>Вставьте ссылку на фото (если есть)</small>
                 </div>
-
                 <div class="form-actions">
                     <button type="submit" class="btn btn-success">Сохранить наблюдение</button>
-                    <a href="/" class="btn btn-secondary">↩️ Вернуться к списку</a>
+                    <a href="/" class="btn btn-secondary"> Вернуться к списку</a>
                 </div>
-
                 <div class="form-note">
                     <small>* — поля, обязательные для заполнения</small>
                 </div>
